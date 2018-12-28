@@ -46,5 +46,7 @@ return [
         ],
         */
     ],
+    // 修改默认的布局配置文件
+    'layout' => 'gentelella',   // 注意配置数组深度
     'params' => $params,
 ];

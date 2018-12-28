@@ -150,6 +150,7 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function getAuthKey()
     {
+        // 数据库里面的内容
         return $this->auth_key;
     }
 
