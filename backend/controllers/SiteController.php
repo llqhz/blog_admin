@@ -14,6 +14,9 @@ use yii\filters\AccessControl;
 class SiteController extends Controller
 {
 
+    public $layout = 'login';
+
+
     public $enableCsrfValidation = false;
 
     // 根据条件控制csrf 校验
@@ -34,7 +37,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login', 'error',],
+                        'actions' => ['login', 'error'],
                         'allow' => true,    // 无条件允许
                     ],
                     [
@@ -43,7 +46,7 @@ class SiteController extends Controller
                         'roles' => ['@'],   // 匹配登录的用户
                     ],
                     [
-                        'actions' => ['signup'],
+                        'actions' => ['signup','refound','captcha'],
                         'allow' => true,
                         'roles' => ['?'],   // 匹配一个游客
                     ],
@@ -53,7 +56,7 @@ class SiteController extends Controller
                 // 请求方法控制
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['post'],
+                    'logout' => ['post','get'],
                 ],
             ],
         ];
@@ -70,13 +73,16 @@ class SiteController extends Controller
                 // 将error路由交由action类处理
                 'class' => 'yii\web\ErrorAction',
             ],
+            'captcha' => [
+                'class' => 'yii\captcha\CaptchaAction',
+                'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
+                'height' => '38',
+            ],
         ];
     }
 
     /**
-     * Displays homepage.
-     *
-     * @return string
+     * 主页
      */
     public function actionIndex()
     {
@@ -90,9 +96,7 @@ class SiteController extends Controller
 
 
     /**
-     * Login action.
-     *
-     * @return string
+     * 登录
      */
     public function actionLogin()
     {
@@ -113,9 +117,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Signs user up.
-     *
-     * @return mixed
+     * 注册
      */
     public function actionSignup()
     {
@@ -141,4 +143,14 @@ class SiteController extends Controller
         Yii::$app->user->logout();
         return $this->goHome();
     }
+
+    public function actionRefound()
+    {
+
+        return 'Site => refound';
+    }
+
+
+    
+    
 }

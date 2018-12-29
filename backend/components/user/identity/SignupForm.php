@@ -10,6 +10,7 @@ namespace backend\components\user\identity;
 
 
 use yii\base\Model;
+use yii\db\ActiveRecord;
 
 
 /**
@@ -21,6 +22,10 @@ class SignupForm extends Model
     public $email;
     public $password;
 
+    public $repassword; // 重复密码
+    public $verifyCode; // 验证码
+
+
 
     /**
      * {@inheritdoc}
@@ -29,18 +34,19 @@ class SignupForm extends Model
     {
         return [
             ['username', 'trim'],
-            ['username', 'required'],
             ['username', 'unique', 'targetClass' => User::className(), 'message' => '该用户名已被占用'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'trim'],
-            ['email', 'required'],
-            ['email', 'email'],
+            ['email', 'email','message' => '请检查邮箱的格式'],
             ['email', 'string', 'max' => 255],
             ['email', 'unique', 'targetClass' => User::className(), 'message' => '该邮箱已被占用'],
 
-            ['password', 'required'],
+            [['username','email','password','repassword','verifyCode'], 'required','message' => '{attribute}不能为空'],
             ['password', 'string', 'min' => 6],
+            ['repassword', 'compare', 'compareAttribute' => 'password','message'=>'两次输入的密码不一致！'],
+
+            ['verifyCode', 'captcha'],
         ];
     }
 
@@ -62,5 +68,16 @@ class SignupForm extends Model
         $user->generateAuthKey();
 
         return $user->save() ? $user : null;
+    }
+
+    public function attributeLabels()
+    {
+        return [
+            'username' => '用户名',
+            'password' => '密码',
+            'verifyCode' => '验证码',
+            'repassword' => '确认密码',
+            'email' => '邮箱',
+        ];
     }
 }

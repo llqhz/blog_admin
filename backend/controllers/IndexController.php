@@ -9,7 +9,15 @@
 namespace backend\controllers;
 
 
-class IndexController
+use yii\web\Controller;
+
+class IndexController extends Controller
 {
+
+    public function actionIndex()
+    {
+        return 'Index->index';
+    }
+
 
 }

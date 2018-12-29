@@ -35,6 +35,7 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_ACTIVE = 10;  // 是否有效
 
 
+
     /**
      * {@inheritdoc}
      * 定义表名

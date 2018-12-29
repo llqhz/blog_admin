@@ -33,6 +33,8 @@ class GentellaAssets extends AssetBundle
         'https://cdn.jsdelivr.net/npm/ilayui@2.0.4/src/layui.min.js',
         // laydate
 //        'https://cdn.jsdelivr.net/npm/laydate@1.0.7/laydate/laydate.min.js',
+        // nprogress
+        'https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js',
     ];
 
     // 按先后顺序加载
@@ -48,5 +50,9 @@ class GentellaAssets extends AssetBundle
         'https://lib.baomitu.com/switchery/0.8.2/switchery.min.css',
         // layer
         'https://cdn.jsdelivr.net/npm/ilayui@2.0.4/src/css/layui.min.css',
+        // nprogress 页面加载进度条
+        'https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css',
+        // animate
+        'https://lib.baomitu.com/animate.css/3.7.0/animate.min.css'
     ];
 }

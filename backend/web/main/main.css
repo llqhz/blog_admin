@@ -116,3 +116,9 @@ div.tagsinput div {
 div.CodeMirror-scroll {
     height: inherit;
 }
+
+.help-block.help-block-error:not(:empty) {
+    margin-top: -18px;
+    text-align: left;
+    text-indent: 1em;
+}
