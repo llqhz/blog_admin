@@ -6,6 +6,7 @@
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Url;
 
 $this->title = '账号注册';
 $this->params['breadcrumbs'][] = $this->title;
@@ -24,11 +25,23 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'repassword')->label(false)->passwordInput(['placeholder'=>'请确认密码']) ?>
 
             <?= $form->field($model,'verifyCode')->widget(\yii\captcha\Captcha::className()) ?>
-            <hr>
-            <div class="form-group">
-                <?= Html::a('注册','javascript:document.forms[0].submit()',['class' => 'btn btn-default', 'name' => 'signup-button']) ?>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <?= Html::a('登录',\yii\helpers\Url::toRoute('site/login'),['class' => 'btn btn-default', 'name' => 'signup-button']) ?>
+
+            <div class="clearfix"></div>
+
+            <div class="separator">
+                <div class="form-group">
+                    <?= Html::a('注册','javascript:document.forms[0].submit()',['class' => 'btn btn-default', 'name' => 'signup-button']) ?>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <?= Html::a('登录',\yii\helpers\Url::toRoute('site/login'),['class' => 'btn btn-default', 'name' => 'signup-button']) ?>
+                </div>
+
+                <div class="clearfix"></div>
+                <br />
+
+                <div>
+                    <h1><i class="fa fa-paw"></i> Gentelella Alela!</h1>
+                    <p>©2016 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and Terms</p>
+                </div>
             </div>
 
             <?php ActiveForm::end(); ?>

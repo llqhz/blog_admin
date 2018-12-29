@@ -40,7 +40,7 @@ class SignupForm extends Model
             ['email', 'trim'],
             ['email', 'email','message' => '请检查邮箱的格式'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => User::className(), 'message' => '该邮箱已被占用'],
+            ['email', 'unique', 'targetClass' => User::className(), 'message' => '该邮箱已被注册'],
 
             [['username','email','password','repassword','verifyCode'], 'required','message' => '{attribute}不能为空'],
             ['password', 'string', 'min' => 6],

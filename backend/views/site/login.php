@@ -27,8 +27,6 @@ $this->title = '用户登录';
 
                 <?=  $form->field($model,'rememberMe')->label('&nbsp;&nbsp;&nbsp;记住密码&nbsp;&nbsp;&nbsp;<small>(请在确保设备安全的情况下选择)</small>')->checkbox(['class'=>'flat']) ?>
 
-                <br>
-
                 <div>
                     <?= Html::a('登录', 'javascript:document.forms[0].submit()',['class' => 'btn btn-default submit', 'name' => 'login-button','type'=>"submit"]) ?>
                     <?= Html::a('扫码登录', '#signup',['class' => 'btn btn-default submit', 'name' => 'login-button']) ?>
