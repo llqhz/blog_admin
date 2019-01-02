@@ -72,6 +72,7 @@ class SiteController extends Controller
             'error' => [
                 // 将error路由交由action类处理
                 'class' => 'yii\web\ErrorAction',
+                //'view' => '@yiister/gentelella/views/error',
             ],
             'captcha' => [
                 'class' => 'yii\captcha\CaptchaAction',
@@ -86,7 +87,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+
+        //return $this->render('index');
     }
 
     public function actionHello()
