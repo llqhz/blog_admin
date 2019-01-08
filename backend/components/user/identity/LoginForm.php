@@ -33,6 +33,8 @@ class LoginForm extends Model
             ['rememberMe', 'boolean'],
             // password is validated by validatePassword()
             ['password', 'validatePassword'],
+            // 验证权限用方法验证
+            //['username','validateUsername'],
         ];
     }
 
@@ -48,7 +50,22 @@ class LoginForm extends Model
         if (!$this->hasErrors()) {
             $user = $this->getUser();
             if (!$user || !$user->validatePassword($this->password)) {
-                $this->addError($attribute, 'Incorrect username or password.');
+                $this->addError($attribute, '用户名或密码错误');
+            }
+        }
+    }
+
+    /**
+     * 验证用户权限
+     * @param $attribute
+     * @param $params
+     */
+    public function validateUsername($attribute, $params)
+    {
+        if (!$this->hasErrors()) {
+            $user = $this->getUser();
+            if ( $user->status <= 10 ) {
+                $this->addError($attribute, '该用户暂无权限');
             }
         }
     }

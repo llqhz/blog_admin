@@ -42,11 +42,13 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+
             ],
         ],
         */
     ],
     // 修改默认的布局配置文件
-    'layout' => 'gentelella',   // 注意配置数组深度
+    'layout' => 'gentelella',   // 注意配置数组深度层次
     'params' => $params,
+    'homeUrl' => 'index.php/?r=index/index', // 设置主页
 ];

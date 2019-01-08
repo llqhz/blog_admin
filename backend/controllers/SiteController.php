@@ -87,7 +87,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-
+        return $this->goHome();
         //return $this->render('index');
     }
 
@@ -148,7 +148,6 @@ class SiteController extends Controller
 
     public function actionRefound()
     {
-
         return 'Site => refound';
     }
 
