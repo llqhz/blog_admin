@@ -9,7 +9,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 
 /**
- * Site controller
+ * 管理员登录
  */
 class SiteController extends Controller
 {
@@ -88,12 +88,6 @@ class SiteController extends Controller
     public function actionIndex()
     {
         return $this->goHome();
-        //return $this->render('index');
-    }
-
-    public function actionHello()
-    {
-        return 'Hello';
     }
 
 
@@ -146,6 +140,10 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
+    /**
+     * 用户找回密码
+     * @return string
+     */
     public function actionRefound()
     {
         return 'Site => refound';

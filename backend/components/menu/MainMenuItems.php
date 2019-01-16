@@ -11,9 +11,9 @@ namespace backend\components\menu;
 
 class MainMenuItems
 {
-    public static function getItems()
+    public static function getItems($user)
     {
-        $id = \Yii::$app->user->id;
+        $id = $user->id;
         return self::menuItems();
     }
 
@@ -21,7 +21,7 @@ class MainMenuItems
     public static function menuItems()
     {
         return [
-            ["label" => "Home", "url" => ["hello/hello"], "icon" => "home"],
+            ["label" => "Home", "url" => ["index/index"], "icon" => "home"],
             ["label" => "Layout", "url" => ["site/layout"], "icon" => "files-o"],
             ["label" => "Error page", "url" => ["site/error-page"], "icon" => "close"],
             [

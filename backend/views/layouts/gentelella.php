@@ -66,7 +66,7 @@ $bundle = AppAsset::register($this);
                         <?=
                         \yiister\gentelella\widgets\Menu::widget(
                             [
-                                "items" => \frontend\models\MainMenuItems::getItems()
+                                "items" => $this->params['sidebarMenuItems'],
                             ]
                         )
                         ?>

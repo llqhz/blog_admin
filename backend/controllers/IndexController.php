@@ -9,15 +9,27 @@
 namespace backend\controllers;
 
 
-use yii\web\Controller;
+use backend\controllers\base\Base;
 
-class IndexController extends Controller
+class IndexController extends Base
 {
 
     public function actionIndex()
     {
-        return 'Index->index';
+
+        $assign = [
+            'numbers' => [],  //数量  ->访问量
+            'trends' => [],   // 趋势
+            'topList'   => [], //访问排行
+        ];
+
+        return $this->render('index',$assign);
     }
+
+
+    //  菜单管理  ,分类管理,  用户管理,  文章管理,   评论管理
+
+
 
 
 }
