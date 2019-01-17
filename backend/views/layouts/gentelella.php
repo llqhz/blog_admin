@@ -7,7 +7,7 @@
  */
 
 use yii\helpers\Html;
-use frontend\assets\AppAsset;
+use backend\assets\AppAsset;
 
 // Yii注册前端资源管理器
 $bundle = AppAsset::register($this);
@@ -62,7 +62,7 @@ $bundle = AppAsset::register($this);
                 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
                     <div class="menu_section">
-                        <h3>General</h3>
+                        <h3>管理菜单</h3>
                         <?=
                         \yiister\gentelella\widgets\Menu::widget(
                             [
@@ -190,7 +190,7 @@ $bundle = AppAsset::register($this);
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Form Design <small>different form elements</small></h2>
+                            <h2><?= $this->title ?> <small><!--这里是副标题--></small></h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>

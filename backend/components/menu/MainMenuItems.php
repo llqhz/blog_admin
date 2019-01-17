@@ -17,7 +17,11 @@ class MainMenuItems
         return self::menuItems();
     }
 
-
+    /**
+     * 获取用户有权限的菜单
+     *
+     * @return array
+     */
     public static function menuItems()
     {
         return [
@@ -88,5 +92,16 @@ class MainMenuItems
                 ],
             ],
         ];
+    }
+
+
+    /**
+     * 根据路由匹配,返回当前菜单
+     *
+     * @return array
+     */
+    public static function getCurrentMenu()
+    {
+        return [];
     }
 }

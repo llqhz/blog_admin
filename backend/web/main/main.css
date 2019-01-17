@@ -122,3 +122,13 @@ div.CodeMirror-scroll {
     text-align: left;
     text-indent: 1em;
 }
+
+/*调节flot*/
+.chart_plots {
+    width: 500px;
+    min-height:300px;
+}
+.dashboard_graph .x_title h3 {
+    font-weight: 400;
+    font-size: 24px;
+}

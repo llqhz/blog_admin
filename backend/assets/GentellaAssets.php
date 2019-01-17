@@ -13,12 +13,6 @@ use yii\web\AssetBundle;
 
 class GentellaAssets extends AssetBundle
 {
-    public $depends = [
-        'yiister\gentelella\assets\ThemeAsset',
-        'yiister\gentelella\assets\ExtensionAsset',
-    ];
-
-    // 前端依赖的js , 需要按顺序填写
     public $js = [
         // app 的js [depends] 依赖加载  [ 依赖先加载 ]
         // 多选
@@ -35,7 +29,25 @@ class GentellaAssets extends AssetBundle
 //        'https://cdn.jsdelivr.net/npm/laydate@1.0.7/laydate/laydate.min.js',
         // nprogress
         'https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js',
+        // 画图表
+        'https://lib.baomitu.com/flot/0.8.3/excanvas.min.js',
+        'https://lib.baomitu.com/flot/0.8.3/jquery.flot.min.js',
+        // 'https://lib.baomitu.com/flot/0.8.3/jquery.flot.pie.min.js',
+        'https://lib.baomitu.com/flot/0.8.3/jquery.flot.time.min.js',
+        'https://lib.baomitu.com/flot/0.8.3/jquery.flot.resize.min.js',
+        'https://lib.baomitu.com/flot/0.8.3/jquery.flot.categories.min.js',
+        'https://lib.baomitu.com/flot/0.8.3/jquery.flot.canvas.min.js',
+        'https://lib.baomitu.com/flot/0.8.3/jquery.flot.fillbetween.min.js',
+        'https://lib.baomitu.com/flot/0.8.3/jquery.flot.resize.min.js',
+        // 图表平滑化
+        'https://cdn.jsdelivr.net/npm/flot-spline@0.0.1/js/jquery.flot.spline.min.js'
     ];
+
+    public $depends = [
+        'yiister\gentelella\assets\ThemeAsset',
+        'yiister\gentelella\assets\ExtensionAsset',
+    ];
+    // 前端依赖的js , 需要按顺序填写
 
     // 按先后顺序加载
     public $css = [
