@@ -25,7 +25,8 @@ class MainMenuItems
     public static function menuItems()
     {
         return [
-            ["label" => "Home", "url" => ["index/index"], "icon" => "home"],
+            ["label" => "主页", "url" => ["index/index"], "icon" => "home"],
+            ["label" => "管理员管理", "url" => ["admin-user/index"], "icon" => "home"],
             ["label" => "Layout", "url" => ["site/layout"], "icon" => "files-o"],
             ["label" => "Error page", "url" => ["site/error-page"], "icon" => "close"],
             [

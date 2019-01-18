@@ -61,13 +61,12 @@ $this->title = '主页';
                 <div>
                     <p><?= ArrayHelper::getValue($factor,'title') ?></p>
                     <div class="">
-                        <div class="progress progress_sm" style="width: <?=  ArrayHelper::getValue($factor,'value')?>%;">
-                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="80" aria-valuenow="79" style="width: 80%;"></div>
+                        <div class="progress progress_sm">
+                            <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="<?=  ArrayHelper::getValue($factor,'value')?>"></div>
                         </div>
                     </div>
                 </div>
                 <?php endforeach; ?>
-
             </div>
         </div>
     </div>
