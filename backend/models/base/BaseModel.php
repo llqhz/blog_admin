@@ -26,7 +26,7 @@ class BaseModel extends ActiveRecord
      * @param $key
      * @return array|mixed|null|string
      */
-    public static function getOptValue($field, $key)
+    public static function getOptValue($field, $key=null)
     {
         if ( array_key_exists($field,static::$opts) ) {
             if ( $key===true ) {

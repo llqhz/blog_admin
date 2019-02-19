@@ -15,7 +15,7 @@ use yii\filters\VerbFilter;
 class AdminUserController extends Base
 {
     /**
-     * {@inheritdoc}
+     * 引导和改变控制器方法
      */
     public function behaviors()
     {

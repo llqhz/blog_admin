@@ -40,9 +40,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'email:email',
             'mobile',
             ['attribute'=>'role','value'=>$model->getVar('role')],
-            ['label' => '状态','value' => $model->getVar('status'),],
+            ['attribute' => 'status','value' => $model->getVar('status'),],
             'avatar',
-            'vip_lv',
+            ['attribute' => 'vip_lv','value' => $model->getVar('vip_lv'),],
             [
                 'attribute' => 'created_at',
                 'value' => date('Y-m-d H:i:s',$model->created_at)

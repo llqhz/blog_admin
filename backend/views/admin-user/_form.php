@@ -1,7 +1,7 @@
 <?php
 
 use yii\helpers\Html;
-use yii\widgets\ActiveForm;
+use backend\components\forms\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\AdminUser */
@@ -38,9 +38,11 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'updated_at')->textInput() ?>
 
-    <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
-    </div>
+    <!--<div class="form-group">
+        <?/*= Html::submitButton('Save', ['class' => 'btn btn-success']) */?>
+    </div>-->
+    
+    <?= $form->submitBtns() ?>
 
     <?php ActiveForm::end(); ?>
 

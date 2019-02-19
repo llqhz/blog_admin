@@ -119,4 +119,17 @@ a.desc:after {
     outline: none;
 }
 
+/*增删改查样式调整*/
+/*修改help-block*/
+.form-horizontal .form-group p.help-block {
+    margin-top: 1px;
+}
+/*查看列表 index*/
+table thead th {
+    min-width: 80px;
+}
+
+.x_title h2 {
+    font-size: 18px;
+}
 

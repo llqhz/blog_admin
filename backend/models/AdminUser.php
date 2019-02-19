@@ -39,6 +39,10 @@ class AdminUser extends BaseModel
             0 => '普通等级',
             10 => '管理员等级',
         ],
+        'vip_lv' => [
+            0 => '普通会员',
+            10 => '黄金会员',
+        ],
     ];
 
     /**
@@ -69,7 +73,7 @@ class AdminUser extends BaseModel
     public function attributeLabels()
     {
         return [
-            'id' => '自增ID',
+            'id' => '用户ID',
             'username' => '用户名',
             'auth_key' => '自动登录key',
             'password_hash' => '加密密码',
