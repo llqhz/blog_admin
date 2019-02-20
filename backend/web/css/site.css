@@ -125,11 +125,17 @@ a.desc:after {
     margin-top: 1px;
 }
 /*查看列表 index*/
-table thead th {
+.index-list table thead th {
     min-width: 80px;
 }
 
 .x_title h2 {
     font-size: 18px;
+}
+
+/*主页卡片*/
+.tile_count {
+    margin-bottom: 0px;
+    margin-top: 0px;
 }
 

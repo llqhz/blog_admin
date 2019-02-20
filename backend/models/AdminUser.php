@@ -60,7 +60,7 @@ class AdminUser extends BaseModel
     {
         return [
             [['username', 'auth_key', 'password_hash', 'email', 'mobile', 'created_at', 'updated_at'], 'required'],
-            [['role', 'status', 'vip_lv', 'created_at', 'updated_at'], 'integer'],
+            [['role', 'status', 'vip_lv'], 'integer'],
             [['username', 'password_hash', 'password_reset_token', 'email_validate_token', 'email', 'avatar'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
             [['mobile'], 'string', 'max' => 20],
@@ -98,6 +98,23 @@ class AdminUser extends BaseModel
     {
         return self::getOptValue('status',$this->getAttribute('status'));
     }
+
+    // 展示时间戳
+    public function afterFind()
+    {
+        $this->created_at = date('Y-m-d H:i:s',$this->created_at);
+        $this->updated_at = date('Y-m-d H:i:s',$this->updated_at);
+        return parent::afterFind();
+    }
+
+    public function beforeSave($insert)
+    {
+        $this->created_at = strtotime($this->created_at);
+        $this->updated_at = strtotime($this->updated_at);
+    }
+
+
+
 
 
 }

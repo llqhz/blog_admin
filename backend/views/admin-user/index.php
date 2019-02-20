@@ -12,7 +12,7 @@ use yii\helpers\Url;
 $this->title = '管理员管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="admin-user-index">
+<div class="admin-user-index index-list">
 
     <?= GridView::widget([
         'columns' => [
@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'created_at',
-                'format' => ['date','Y-m-d H:i:s'],
+                'format' => ['date','php:Y-m-d H:i:s'],
                 'headerOptions' => [  // 作用于th
                     'style' => 'background-color:lightgreen'
                 ],
@@ -72,7 +72,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'attribute' => 'updated_at',
-                'format' => ['date','Y-m-d H:i:s'],
+                'format' => ['date','php:Y-m-d H:i:s'],
             ],
             ['class' => 'yii\grid\ActionColumn','header' => '操作'],
         ],
