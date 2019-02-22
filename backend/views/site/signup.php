@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= $form->field($model, 'password')->label(false)->passwordInput(['placeholder'=>'请输入密码']) ?>
             <?= $form->field($model, 'repassword')->label(false)->passwordInput(['placeholder'=>'请确认密码']) ?>
 
-            <?= $form->field($model,'verifyCode')->widget(\yii\captcha\Captcha::className()) ?>
+            <?= $form->field($model,'verifyCode',['options'=>['class'=>'form-group verify-code' ]])->label('验证码 :',['style'=>'position:relative;right:60px;'])->widget(\yii\captcha\Captcha::className()) ?>
 
             <div class="clearfix"></div>
 

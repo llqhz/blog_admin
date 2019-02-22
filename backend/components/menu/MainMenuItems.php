@@ -26,7 +26,9 @@ class MainMenuItems
     {
         return [
             ["label" => "主页", "url" => ["index/index"], "icon" => "home"],
-            ["label" => "管理员管理", "url" => ["admin-user/index"], "icon" => "home"],
+//            ["label" => "管理员管理", "url" => ["admin-user/index"], "icon" => "home"],
+            ["label" => "用户管理", "url" => ["user-center/index"], "icon" => "home"],
+            ["label" => "文章管理", "url" => ["article/index"], "icon" => "pencil-square-o"],
             ["label" => "Layout", "url" => ["site/layout"], "icon" => "files-o"],
             ["label" => "Error page", "url" => ["site/error-page"], "icon" => "close"],
             [

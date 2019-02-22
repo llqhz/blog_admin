@@ -8,6 +8,7 @@
 
 namespace backend\components\user\identity;
 
+use backend\models\UserCenter;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -212,6 +213,11 @@ class User extends ActiveRecord implements IdentityInterface
     public function removePasswordResetToken()
     {
         $this->password_reset_token = null;
+    }
+
+    public function getProfile()
+    {
+        return $this->hasOne(UserCenter::className(),['id'=>'uid']);
     }
 
 }

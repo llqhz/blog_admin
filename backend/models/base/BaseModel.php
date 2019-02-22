@@ -9,6 +9,7 @@
 namespace backend\models\base;
 
 
+use backend\components\forms\Tools;
 use yii\db\ActiveRecord;
 
 class BaseModel extends ActiveRecord
@@ -49,5 +50,21 @@ class BaseModel extends ActiveRecord
         if ( $key === null ) $key = $this->getAttribute($field);
         return static::getOptValue($field,$key);
     }
-    
+
+
+    // 文件上传的保存方法
+    public function upload($fields=[])
+    {
+        if ($this->validate()) {
+            if ( empty($fields) ) {
+                return true;
+            }
+            foreach ($fields as $field) {
+                Tools::upload($this,$field);
+            }
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

@@ -53,6 +53,14 @@ class Tools
                 $button = '<i class="fa fa-fw fa-close"></i>删除';
                 break;
 
+            case 'update':
+                $button = '<i class="fa fa-fw fa-edit"></i>编辑';
+                break;
+
+            case 'index':
+                $button = '<i class="fa fa-fw fa-home"></i>主页';
+                break;
+
             case 'search':
                 return '<li>
                            <form action="" method="get" accept-charset="utf-8">
@@ -72,7 +80,7 @@ class Tools
             'li',
              Html::button(
                  $button,
-                 ['class'=>"btn btn-info btn-sm dropdown-toggle"]
+                 ['class'=>implode(' ',['btn','btn-sm','dropdown-toggle',$type=='delete'?'btn-danger':'btn-info']) ]
              ),
              ['data-url'=>$url,'onclick'=>"location.replace(this.dataset.url)"]
         );

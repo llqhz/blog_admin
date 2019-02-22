@@ -2,20 +2,21 @@
 
 namespace backend\controllers;
 
-use Yii;
-use backend\models\AdminUser;
-use backend\models\AdminUserSearch;
 use backend\controllers\base\Base;
+use Yii;
+use backend\models\UserCenter;
+use backend\models\UserCenterSearch;
+use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AdminUserController implements the CRUD actions for AdminUser model.
+ * UserCenterController implements the CRUD actions for UserCenter model.
  */
-class AdminUserController extends Base
+class UserCenterController extends Base
 {
     /**
-     * 引导和改变控制器方法
+     * 过滤行为
      */
     public function behaviors()
     {
@@ -29,13 +30,37 @@ class AdminUserController extends Base
         ];
     }
 
+    public function actions()
+    {
+        return [
+            'upload' => [
+                'class' => 'twitf\dropzone\UploadAction',
+                'config' => [
+                    "filePathFormat" => "/uploads/image/".date('YmdHis').'/', //上传保存路径 返回给前台的路径
+                    "fileRoot" => \Yii::getAlias('@webroot'),//上传的根目录
+                ],
+            ],
+            'remove' => [
+                'class' => 'twitf\dropzone\RemoveAction',
+                'config' => [
+                    "fileRoot" => \Yii::getAlias("@webroot"),//上传的根目录
+                ],
+            ],
+            'ueditorUpload' => [
+                'class' => 'kucha\ueditor\UEditorAction',
+            ],
+        ];
+    }
+
+
+
     /**
-     * Lists all AdminUser models.
+     * Lists all UserCenter models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new AdminUserSearch();
+        $searchModel = new UserCenterSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,8 +70,8 @@ class AdminUserController extends Base
     }
 
     /**
-     * Displays a single AdminUser model.
-     * @param integer $id
+     * Displays a single UserCenter model.
+     * @param string $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -58,13 +83,13 @@ class AdminUserController extends Base
     }
 
     /**
-     * Creates a new AdminUser model.
+     * Creates a new UserCenter model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new AdminUser();
+        $model = new UserCenter();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -76,9 +101,9 @@ class AdminUserController extends Base
     }
 
     /**
-     * Updates an existing AdminUser model.
+     * Updates an existing UserCenter model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -86,7 +111,7 @@ class AdminUserController extends Base
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->upload(['avatar']) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -96,9 +121,9 @@ class AdminUserController extends Base
     }
 
     /**
-     * Deletes an existing AdminUser model.
+     * Deletes an existing UserCenter model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     * @param string $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -110,15 +135,15 @@ class AdminUserController extends Base
     }
 
     /**
-     * Finds the AdminUser model based on its primary key value.
+     * Finds the UserCenter model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param integer $id
-     * @return AdminUser the loaded model
+     * @param string $id
+     * @return UserCenter the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = AdminUser::findOne($id)) !== null) {
+        if (($model = UserCenter::findOne($id)) !== null) {
             return $model;
         }
 
