@@ -9,6 +9,7 @@
 namespace backend\components\user\identity;
 
 
+use backend\models\UserCenter;
 use yii\base\Model;
 use yii\db\ActiveRecord;
 
@@ -66,6 +67,7 @@ class SignupForm extends Model
         $user->email = $this->email;
         $user->setPassword($this->password);
         $user->generateAuthKey();
+        $user->uid = $this->bindUserCenter();
 
         return $user->save() ? $user : null;
     }
@@ -79,5 +81,12 @@ class SignupForm extends Model
             'repassword' => '确认密码',
             'email' => '邮箱',
         ];
+    }
+
+    public function bindUserCenter()
+    {
+        $user_center = new UserCenter();
+        $user_center->email = $this->email;
+        return $user_center->save()?$user_center->id:0;
     }
 }

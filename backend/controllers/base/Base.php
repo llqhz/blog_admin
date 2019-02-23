@@ -20,7 +20,6 @@ class Base extends Controller
     // 侧边栏菜单
     public $sidebarMenuItems;
 
-
     /**
      * 行为 访问控制
      */
@@ -68,7 +67,12 @@ class Base extends Controller
 
         $user = Yii::$app->user;
 
+        if ( $user->isGuest ) {
+            return $this->redirect(['site/login'])->send();
+        }
+
         $this->view->params['sidebarMenuItems'] = MainMenuItems::getItems($user);
+        $this->view->params['profile'] = $user->identity->profile;
 
         return parent::beforeAction($action);
     }

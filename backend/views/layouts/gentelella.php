@@ -6,11 +6,13 @@
  * @comment 技术支持: http://gentelella.yiister.ru/
  */
 
-use yii\helpers\Html;
 use backend\assets\AppAsset;
+use yii\bootstrap\Html;
+use yii\helpers\Url;
 
 // Yii注册前端资源管理器
 $bundle = AppAsset::register($this);
+
 
 ?>
 <?php $this->beginPage(); ?>
@@ -40,18 +42,18 @@ $bundle = AppAsset::register($this);
             <div class="left_col scroll-view">
 
                 <div class="navbar nav_title" style="border: 0;">
-                    <a href="/" class="site_title"><i class="fa fa-paw"></i> <span>管理平台</span></a>
+                    <a href="<?= \yii\helpers\Url::toRoute(['site/index']) ?>" class="site_title"><i class="fa fa-paw"></i> <span>筱怪的博客</span></a>
                 </div>
                 <div class="clearfix"></div>
 
                 <!-- menu prile quick info -->
                 <div class="profile">
                     <div class="profile_pic">
-                        <img src="http://placehold.it/128x128" alt="..." class="img-circle profile_img">
+                        <img src="<?= $this->params['profile']->avatar?:'http://placehold.it/128x128' ?>" alt="..." class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
-                        <span>Welcome,</span>
-                        <h2>John Doe</h2>
+                        <span>欢迎您 :</span>
+                        <h2><?= $this->params['profile']->nickname ?></h2>
                     </div>
                 </div>
                 <!-- /menu prile quick info -->
@@ -106,22 +108,22 @@ $bundle = AppAsset::register($this);
                     <ul class="nav navbar-nav navbar-right">
                         <li class="">
                             <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                <img src="http://placehold.it/128x128" alt="">John Doe
+                                <img src="<?= $this->params['profile']->avatar?:'http://placehold.it/128x128' ?>" alt=""><?= $this->params['profile']->nickname ?>
                                 <span class=" fa fa-angle-down"></span>
                             </a>
                             <ul class="dropdown-menu dropdown-usermenu pull-right">
-                                <li><a href="javascript:;">个人中心</a>
-                                </li>
+                                <li><?= Html::a('个人中心',['user-center/view','id'=>$this->params['profile']->id]) ?></li>
+<!--                                <li>-->
+<!--                                    <a href="javascript:;">-->
+<!--                                        <span class="badge bg-red pull-right">50%</span>-->
+<!--                                        <span>系统设置</span>-->
+<!--                                    </a>-->
+<!--                                </li>-->
+<!--                                <li>-->
+<!--                                    <a href="javascript:;">帮助反馈</a>-->
+<!--                                </li>-->
                                 <li>
-                                    <a href="javascript:;">
-                                        <span class="badge bg-red pull-right">50%</span>
-                                        <span>系统设置</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:;">帮助反馈</a>
-                                </li>
-                                <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i>注销退出</a>
+                                    <?= Html::a('注销退出',['site/logout'],['class'=>'fa fa-sign-out pull-right']) ?>
                                 </li>
                             </ul>
                         </li>
@@ -129,7 +131,7 @@ $bundle = AppAsset::register($this);
                         <li role="presentation" class="dropdown">
                             <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-envelope-o"></i>
-                                <span class="badge bg-green">6</span>
+                                <span class="badge bg-green"><?= count(\frontend\services\EmailAlerts::getItems()) ?></span>
                             </a>
                             <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
                                 <?php foreach (\frontend\services\EmailAlerts::getItems() as $item) : ?>
@@ -150,7 +152,7 @@ $bundle = AppAsset::register($this);
                                 <?php endforeach; ?>
                                 <li>
                                     <div class="text-center">
-                                        <a href="/">
+                                        <a href="<?= \yii\helpers\Url::toRoute(['site/index']) ?>">
                                             <strong>查看所有通知</strong>
                                             <i class="fa fa-angle-right"></i>
                                         </a>

@@ -3,6 +3,7 @@ namespace backend\controllers;
 
 use backend\components\user\identity\LoginForm;
 use backend\components\user\identity\SignupForm;
+use backend\models\UserCenter;
 use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
@@ -15,7 +16,6 @@ class SiteController extends Controller
 {
 
     public $layout = 'login';
-
 
     public $enableCsrfValidation = false;
 
@@ -49,6 +49,10 @@ class SiteController extends Controller
                         'actions' => ['signup','refound','captcha'],
                         'allow' => true,
                         'roles' => ['?'],   // 匹配一个游客
+                    ],
+                    [
+                        'actions' => ['test'],
+                        'allow' => true,
                     ],
                 ],
             ],
@@ -131,13 +135,15 @@ class SiteController extends Controller
         ]);
     }
 
+
+
     /**
      * 登录用户退出
      */
     public function actionLogout()
     {
         Yii::$app->user->logout();
-        return $this->goHome();
+        return $this->redirect(['site/login']);
     }
 
     /**
@@ -150,6 +156,17 @@ class SiteController extends Controller
     }
 
 
-    
+    public function actionTest()
+    {
+        $user_center = Yii::$app->getUser()->identity->profile;
+        var_dump($user_center);
+
+        return '';
+        $user_center = new UserCenter();
+        $user_center->email = 'ssss';
+        $res = $user_center->save();
+        var_dump(['user'=>$user_center,'res'=>$res,'error'=>$user_center->getErrors()]);
+    }
+
     
 }

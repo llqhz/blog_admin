@@ -21,7 +21,7 @@ $this->title = '用户登录';
                     ]) ?>
                 <?= $form->field($model,'password')->label(false)->passwordInput() ?>
 
-                <?= $form->field($model, 'verifyCode')->label('验证码: ')->widget(\yii\captcha\Captcha::classname(), [
+                <?= $form->field($model, 'verifyCode',['options'=>['class'=>'form-group verify-code' ]])->label('验证码: ',['style'=>'position:relative;right:60px;'])->widget(\yii\captcha\Captcha::classname(), [
                     // configure additional widget properties here
                 ]) ?>
 
