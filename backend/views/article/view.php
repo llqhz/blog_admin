@@ -11,7 +11,7 @@ use yii\helpers\Url;
 $this->title = '查看文章';
 
 ?>
-<div class="article-view">
+<div class="article-view index-view">
 
     <?= $this->render('_form', [
         'model' => $model,
@@ -26,3 +26,9 @@ $this->title = '查看文章';
 <?= Tools::button('update',['url'=>Url::toRoute(['update','id'=>$model->id])]) ?>
 <?= Tools::button('delete',['url'=>Url::toRoute(['delete','id'=>$model->id])]) ?>
 <?php $this->endBlock(); ?>
+
+<?php $this->registerJs("
+
+
+
+",\yii\web\View::POS_END); ?>

@@ -3,17 +3,16 @@
 namespace backend\controllers;
 
 use Yii;
-use backend\models\Article;
-use backend\models\ArticleSearch;
+use backend\models\Comments;
+use backend\models\CommentsSearch;
 use backend\controllers\base\Base;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
 
 /**
- * ArticleController implements the CRUD actions for Article model.
+ * CommentsController implements the CRUD actions for Comments model.
  */
-class ArticleController extends Base
+class CommentsController extends Base
 {
     /**
      * {@inheritdoc}
@@ -30,36 +29,13 @@ class ArticleController extends Base
         ];
     }
 
-    public function actions()
-    {
-        return [
-            'upload' => [
-                'class' => 'twitf\dropzone\UploadAction',
-                'config' => [
-                    "filePathFormat" => "/uploads/image/".date('YmdHis').'/', //上传保存路径 返回给前台的路径
-                    "fileRoot" => \Yii::getAlias('@webroot'),//上传的根目录
-                ],
-            ],
-            'remove' => [
-                'class' => 'twitf\dropzone\RemoveAction',
-                'config' => [
-                    "fileRoot" => \Yii::getAlias("@webroot"),//上传的根目录
-                ],
-            ],
-            'ueditorUpload' => [
-                'class' => 'kucha\ueditor\UEditorAction',
-            ],
-        ];
-    }
-
-
     /**
-     * Lists all Article models.
+     * Lists all Comments models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new ArticleSearch();
+        $searchModel = new CommentsSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -69,7 +45,7 @@ class ArticleController extends Base
     }
 
     /**
-     * Displays a single Article model.
+     * Displays a single Comments model.
      * @param string $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -82,16 +58,15 @@ class ArticleController extends Base
     }
 
     /**
-     * Creates a new Article model.
+     * Creates a new Comments model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Article();
-        $model->afterFind();
+        $model = new Comments();
 
-        if ($model->load(Yii::$app->request->post()) && $model->upload(['image','music']) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -101,7 +76,7 @@ class ArticleController extends Base
     }
 
     /**
-     * Updates an existing Article model.
+     * Updates an existing Comments model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param string $id
      * @return mixed
@@ -111,9 +86,7 @@ class ArticleController extends Base
     {
         $model = $this->findModel($id);
 
-        $file = UploadedFile::getInstance($model,'image');
-
-        if ($model->load(Yii::$app->request->post()) && $model->upload(['image','music']) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -123,7 +96,7 @@ class ArticleController extends Base
     }
 
     /**
-     * Deletes an existing Article model.
+     * Deletes an existing Comments model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param string $id
      * @return mixed
@@ -137,15 +110,15 @@ class ArticleController extends Base
     }
 
     /**
-     * Finds the Article model based on its primary key value.
+     * Finds the Comments model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id
-     * @return Article the loaded model
+     * @return Comments the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Article::findOne($id)) !== null) {
+        if (($model = Comments::findOne($id)) !== null) {
             return $model;
         }
 

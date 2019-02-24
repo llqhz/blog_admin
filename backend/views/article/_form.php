@@ -18,6 +18,8 @@ use backend\components\forms\ActiveForm;
 
     <?= $form->field($model, 'image')->imageInput() ?>
 
+    <?= $form->field($model, 'music')->fileInput(['style'=>'margin-top:5px;']) ?>
+
     <?= $form->field($model, 'summary')->textarea(['rows'=>4]) ?>
 
     <?= $form->field($model, 'classify_id')->dropDownList($model->getVar('classify_id',true)) ?>
@@ -28,9 +30,9 @@ use backend\components\forms\ActiveForm;
 
     <?= $form->field($model, 'content_md',['options'=>['id'=>'content-markdown','class'=>'form-group']])->markdown() ?>
 
-   <?= $form->field($model, 'is_new')->radioList($model->getVar('is_new',true)) ?>
+<!--   <?//= $form->field($model, 'is_new')->radioList($model->getVar('is_new',true)) ?>  -->
 
-   <?= $form->field($model, 'is_hot')->radioList($model->getVar('is_hot',true)) ?>
+<!--   <?//= $form->field($model, 'is_hot')->radioList($model->getVar('is_hot',true)) ?>   -->
 
     <?= $form->field($model, 'status')->radioList($model->getVar('status',true)) ?>
 

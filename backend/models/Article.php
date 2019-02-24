@@ -13,6 +13,7 @@ use Yii;
  * @property string $author 作者
  * @property string $user_id 作者Id
  * @property string $image 封面图
+ * @property string $music 音乐
  * @property string $summary 简介
  * @property string $content 文章内容
  * @property int $content_type 文章类型
@@ -78,7 +79,7 @@ class Article extends \backend\models\base\BaseModel
             [['content_type'],'default','value'=>0],
             [['user_id', 'content_type', 'classify_id', 'view_num', 'comment_num', 'is_new', 'is_hot', 'status'], 'integer'],
             [['view_num', 'created_at', 'status','created_at', 'updated_at'], 'safe'],
-            [['title', 'sub_title', 'author', 'image', 'summary', 'content'], 'string', 'max' => 255],
+            [['title', 'sub_title', 'author', 'image', 'music' , 'summary', 'content'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => UserCenter::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -95,6 +96,7 @@ class Article extends \backend\models\base\BaseModel
             'author' => '作者',
             'user_id' => '作者Id',
             'image' => '封面图',
+            'music' => '音乐',
             'summary' => '简介',
             'content' => '文章内容',
             'content_type' => '文章类型',
