@@ -29,6 +29,8 @@ use Yii;
  */
 class Article extends \backend\models\base\BaseModel
 {
+    public $content_md;
+
     /**
      * {@inheritdoc}
      */
@@ -73,9 +75,9 @@ class Article extends \backend\models\base\BaseModel
     public function rules()
     {
         return [
+            [['content_type'],'default','value'=>0],
             [['user_id', 'content_type', 'classify_id', 'view_num', 'comment_num', 'is_new', 'is_hot', 'status'], 'integer'],
-            [['view_num', 'created_at', 'status'], 'required'],
-            [['created_at', 'updated_at'], 'safe'],
+            [['view_num', 'created_at', 'status','created_at', 'updated_at'], 'safe'],
             [['title', 'sub_title', 'author', 'image', 'summary', 'content'], 'string', 'max' => 255],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => UserCenter::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -104,6 +106,7 @@ class Article extends \backend\models\base\BaseModel
             'created_at' => '创建时间',
             'updated_at' => '更新时间',
             'status' => '状态',
+            'content_md' => '文章内容',
         ];
     }
 
@@ -113,5 +116,31 @@ class Article extends \backend\models\base\BaseModel
     public function getUser()
     {
         return $this->hasOne(UserCenter::className(), ['id' => 'user_id']);
+    }
+
+
+    public function afterFind()
+    {
+        $this->content_md = $this->getAttribute('content');
+        if ( !isset($this->content_type) ) {
+            // 设置新增默认值
+            $this->content_type = 0;
+            $this->is_hot = 0;
+            $this->is_new = 0;
+            $this->status = 0;
+            $this->classify_id = 0;
+        }
+    }
+
+    public function beforeSave($insert)
+    {
+        if ( $this->content_type != 0 ) {
+            // markdown
+            $this->content = $this->content_md;
+        } else {
+            // html
+
+        }
+        return parent::beforeSave($insert);
     }
 }

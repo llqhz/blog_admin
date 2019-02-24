@@ -2,51 +2,27 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use backend\components\forms\Tools;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Article */
 
-$this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => 'Articles', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
-\yii\web\YiiAsset::register($this);
+$this->title = '查看文章';
+
 ?>
 <div class="article-view">
 
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <?= DetailView::widget([
+    <?= $this->render('_form', [
         'model' => $model,
-        'attributes' => [
-            'id',
-            'title',
-            'sub_title',
-            'author',
-            'user_id',
-            'image',
-            'summary',
-            'content',
-            'content_type',
-            'classify_id',
-            'view_num',
-            'comment_num',
-            'is_new',
-            'is_hot',
-            'created_at',
-            'updated_at',
-            'status',
-        ],
+        'noBtns' => true
     ]) ?>
 
 </div>
+
+
+<?php $this->beginBlock('navListItems'); ?>
+<?= Tools::button('index',['url'=>Url::toRoute(['index'])]) ?>
+<?= Tools::button('update',['url'=>Url::toRoute(['update','id'=>$model->id])]) ?>
+<?= Tools::button('delete',['url'=>Url::toRoute(['delete','id'=>$model->id])]) ?>
+<?php $this->endBlock(); ?>

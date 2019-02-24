@@ -32,7 +32,8 @@ class Tools
             mkdir(dirname($path), 0777, true);
         }
         // 这个函数有毒 是该php安装本身的问题
-        $file->saveAs($path,false);
+        $res = $file->saveAs($path,false);
+        //var_dump([$res,$path,$file]);die();
         //move_uploaded_file($path,$file->tempName);
         $model->$field = \Yii::getAlias('@web').'/'.$path;
     }

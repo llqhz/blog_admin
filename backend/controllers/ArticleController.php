@@ -8,6 +8,7 @@ use backend\models\ArticleSearch;
 use backend\controllers\base\Base;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * ArticleController implements the CRUD actions for Article model.
@@ -25,6 +26,28 @@ class ArticleController extends Base
                 'actions' => [
                     'delete' => ['POST'],
                 ],
+            ],
+        ];
+    }
+
+    public function actions()
+    {
+        return [
+            'upload' => [
+                'class' => 'twitf\dropzone\UploadAction',
+                'config' => [
+                    "filePathFormat" => "/uploads/image/".date('YmdHis').'/', //上传保存路径 返回给前台的路径
+                    "fileRoot" => \Yii::getAlias('@webroot'),//上传的根目录
+                ],
+            ],
+            'remove' => [
+                'class' => 'twitf\dropzone\RemoveAction',
+                'config' => [
+                    "fileRoot" => \Yii::getAlias("@webroot"),//上传的根目录
+                ],
+            ],
+            'ueditorUpload' => [
+                'class' => 'kucha\ueditor\UEditorAction',
             ],
         ];
     }
@@ -66,8 +89,9 @@ class ArticleController extends Base
     public function actionCreate()
     {
         $model = new Article();
+        $model->afterFind();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->upload(['image']) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
@@ -87,7 +111,9 @@ class ArticleController extends Base
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        $file = UploadedFile::getInstance($model,'image');
+
+        if ($model->load(Yii::$app->request->post()) && $model->upload(['image']) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
