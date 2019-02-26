@@ -1,13 +1,14 @@
 <?php
 
 use yii\helpers\Html;
+use backend\components\forms\Tools;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model backend\models\Article */
 
-$this->title = 'Create Article';
-$this->params['breadcrumbs'][] = ['label' => 'Articles', 'url' => ['index']];
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = '新增文章';
+
 ?>
 <div class="article-create">
 
@@ -18,3 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
     ]) ?>
 
 </div>
+
+
+<?php $this->beginBlock('navListItems'); ?>
+<?= Tools::button('index',['url'=>Url::toRoute(['index'])]) ?>
+<?php $this->endBlock(); ?>

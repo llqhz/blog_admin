@@ -116,4 +116,9 @@ $(()=>{
         $(li).plot([{data:arr_data}],options);
     });;
 
+
+
+    // view 查看页面 禁止重新输入
+    $('.index-view input,.index-view textarea,.index-view select').prop('disabled',true);
 });
+

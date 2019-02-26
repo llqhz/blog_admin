@@ -60,15 +60,15 @@ class ArticleSearch extends Article
         $query->andFilterWhere([
             'id' => $this->id,
             'user_id' => $this->user_id,
-            'content_type' => $this->content_type,
-            'classify_id' => $this->classify_id,
+            //'content_type' => $this->content_type,
+            //'classify_id' => $this->classify_id,
             'view_num' => $this->view_num,
             'comment_num' => $this->comment_num,
-            'is_new' => $this->is_new,
-            'is_hot' => $this->is_hot,
+            //'is_new' => $this->is_new,
+            //'is_hot' => $this->is_hot,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
-            'status' => $this->status,
+            //'status' => $this->status,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])

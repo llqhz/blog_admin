@@ -33,3 +33,7 @@ phpunit.phar
 
 # vagrant runtime
 /.vagrant
+
+#web upload images is not needed
+/backend/web/upload
+/frontend/web/upload

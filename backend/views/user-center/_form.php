@@ -35,7 +35,7 @@ use backend\components\forms\ActiveForm;
     <?= $form->field($model, 'signature_title')->textInput() ?>
     <?= $form->field($model, 'signature_desc')->textarea(['rows'=>3]) ?>
 
-    <?= isset($noBtns)&&$noBtns===true?: $form->submitBtns() ?>
+    <?= isset($noBtns)&&$noBtns===true?'':$form->submitBtns() ?>
 
     <?php ActiveForm::end(); ?>
 
