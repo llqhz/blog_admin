@@ -12,7 +12,7 @@ use yii\bootstrap\ActiveForm as YiiActiveForm;
 
 class ActiveForm extends YiiActiveForm
 {
-    public $fieldClass = 'frontend\components\forms\ActiveField';
+    public $fieldClass = 'backend\components\forms\ActiveField';
 
     public $fieldConfig = [
         'template' => "{label}\n{beginWrapper}\n{input}\n{error}\n{endWrapper}\n{hint}",  // 字段的模板

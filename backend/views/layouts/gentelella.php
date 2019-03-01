@@ -9,6 +9,7 @@
 use backend\assets\AppAsset;
 use yii\bootstrap\Html;
 use yii\helpers\Url;
+use backend\components\tools\EmailAlerts;
 
 // Yii注册前端资源管理器
 $bundle = AppAsset::register($this);
@@ -131,10 +132,10 @@ $bundle = AppAsset::register($this);
                         <li role="presentation" class="dropdown">
                             <a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
                                 <i class="fa fa-envelope-o"></i>
-                                <span class="badge bg-green"><?= count(\frontend\services\EmailAlerts::getItems()) ?></span>
+                                <span class="badge bg-green"><?= count(EmailAlerts::getItems()) ?></span>
                             </a>
                             <ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-                                <?php foreach (\frontend\services\EmailAlerts::getItems() as $item) : ?>
+                                <?php foreach (EmailAlerts::getItems() as $item) : ?>
                                     <li>
                                         <a>
                                         <span class="image">

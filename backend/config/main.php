@@ -11,7 +11,24 @@ return [
     'basePath' => dirname(__DIR__),
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        // 模块
+        'api' => [
+            'class' => 'backend\modules\api\ApiModule',
+            // 模块内的配置
+            'components' => [
+                'response' => [
+                    // 无效配置
+                    'class' => \yii\web\Response::className(),
+                    'format' => yii\web\Response::FORMAT_JSON,
+                    'charset' => 'UTF-8',
+                    'statusCode' => 404,
+                    // ...
+                ],
+
+            ],
+        ]
+    ],
     'language' => 'zh-CN',
     'components' => [
         'request' => [
@@ -38,15 +55,14 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
-        /*
         'urlManager' => [
-            'enablePrettyUrl' => true,
+            'enablePrettyUrl' => false,
             'showScriptName' => false,
             'rules' => [
 
             ],
         ],
-        */
+
     ],
     // 修改默认的布局配置文件
     'layout' => 'gentelella',   // 注意配置数组深度层次
