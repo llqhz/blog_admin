@@ -26,6 +26,9 @@ class ApiModule extends \yii\base\Module
         //绑定beforeSend事件，更改数据输出格式
         // Yii::$app->getResponse()->on(Response::EVENT_BEFORE_SEND, [$this, 'beforeSend']);
 
-        Yii::$app->response->format = Response::FORMAT_JSON;
+        $response = Yii::$app->response;
+
+        $response->format = Response::FORMAT_JSON;
+        $response->headers->add('Access-Control-Allow-Origin','*');
     }
 }
